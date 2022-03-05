@@ -7,23 +7,30 @@ import (
 	"github.com/tiagonevestia/hex-go/core/ports"
 )
 
-type toDoRepositoryMemory struct{}
+type toDoRepositoryMemory struct {
+	todos []domain.ToDo
+}
 
 func NewToDoRepositoryMemory() ports.ToDoRepository {
-	return &toDoRepositoryMemory{}
+	return &toDoRepositoryMemory{
+		todos: []domain.ToDo{
+			{ID: "1", Title: "First", Description: "First description"},
+			{ID: "2", Title: "Second", Description: "Second description"},
+			{ID: "3", Title: "Third", Description: "Third description"},
+		},
+	}
 }
 
 func (t *toDoRepositoryMemory) Get(id string) (*domain.ToDo, error) {
-	todos := []*domain.ToDo{
-		{ID: "1", Title: "First", Description: "First description"},
-		{ID: "2", Title: "Second", Description: "Second description"},
-	}
-
-	for _, todo := range todos {
+	for _, todo := range t.todos {
 		if todo.ID == id {
-			return todo, nil
+			return &todo, nil
 		}
 	}
 
 	return nil, errors.New("Item not found")
+}
+
+func (t *toDoRepositoryMemory) List() ([]domain.ToDo, error) {
+	return t.todos, nil
 }

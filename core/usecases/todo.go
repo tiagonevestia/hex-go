@@ -23,3 +23,12 @@ func (t *toDoUseCase) Get(id string) (*domain.ToDo, error) {
 
 	return todo, nil
 }
+
+func (t *toDoUseCase) List() ([]domain.ToDo, error) {
+	todos, err := t.todoRepo.List()
+	if err != nil {
+		return nil, err
+	}
+
+	return todos, nil
+}

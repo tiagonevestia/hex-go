@@ -1,0 +1,7 @@
+mode: set
+github.com/tiagonevestia/hex-go/core/usecases/todo.go:12.70,16.2 1 1
+github.com/tiagonevestia/hex-go/core/usecases/todo.go:18.60,20.16 2 1
+github.com/tiagonevestia/hex-go/core/usecases/todo.go:24.2,24.18 1 1
+github.com/tiagonevestia/hex-go/core/usecases/todo.go:20.16,22.3 1 1
+github.com/tiagonevestia/hex-go/core/domain/todo.go:11.51,17.2 1 1
+github.com/tiagonevestia/hex-go/core/domain/todo.go:19.32,21.2 1 1

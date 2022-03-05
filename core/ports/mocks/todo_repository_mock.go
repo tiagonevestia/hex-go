@@ -34,3 +34,10 @@ func (t *toDoRepositoryMemory) Get(id string) (*domain.ToDo, error) {
 func (t *toDoRepositoryMemory) List() ([]domain.ToDo, error) {
 	return t.todos, nil
 }
+
+func (t *toDoRepositoryMemory) Create(todo *domain.ToDo) (*domain.ToDo, error) {
+	newTodo := todo
+	newTodo.ID = "4"
+	t.todos = append(t.todos, *newTodo)
+	return todo, nil
+}

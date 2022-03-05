@@ -1,6 +1,8 @@
 package usecases
 
 import (
+	"os/exec"
+
 	"github.com/tiagonevestia/hex-go/core/domain"
 	"github.com/tiagonevestia/hex-go/core/ports"
 )
@@ -31,4 +33,24 @@ func (t *toDoUseCase) List() ([]domain.ToDo, error) {
 	}
 
 	return todos, nil
+}
+
+func (t *toDoUseCase) Create(title, description string) (*domain.ToDo, error) {
+	out, err := exec.Command("uuidgen").Output()
+	if err != nil {
+		return nil, err
+	}
+
+	todo := domain.NewTodo(
+		string(out),
+		title,
+		description,
+	)
+
+	todo, err = t.todoRepo.Create(todo)
+	if err != nil {
+		return nil, err
+	}
+
+	return todo, nil
 }

@@ -36,3 +36,16 @@ func TestList(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, 3, len(todos))
 }
+
+func TestCreate(t *testing.T) {
+	todoUseCase := todoUseCase()
+
+	todo, err := todoUseCase.Create("Fourth", "Fourth description")
+	assert.Nil(t, err)
+	assert.Equal(t, "4", todo.ID)
+
+	todo, err = todoUseCase.Get("4")
+	assert.Nil(t, err)
+	assert.Equal(t, "Fourth", todo.Title)
+	assert.Equal(t, "Fourth description", todo.Description)
+}
